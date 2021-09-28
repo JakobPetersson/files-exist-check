@@ -12,6 +12,9 @@ Test it:
 # Test once
 ./test.sh
 
+# Test once (Silent mode, only print failures)
+SILENT=Y ./test.sh
+
 #  Test until it fails
 while ./test.sh; do true; done
 ```
