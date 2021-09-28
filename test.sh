@@ -70,6 +70,10 @@ _alg_1() {
   find "${1}" -name "${2}" -type f -maxdepth 1 | read -r
 }
 
+_alg_2() {
+  find "${1}" -name "${2}" -type f -maxdepth 1 | grep "$" > /dev/null
+}
+
 #
 # Test functions
 #
@@ -77,10 +81,12 @@ _alg_1() {
 echo "With set -eu"
 set -eu
 _test_a_function "_alg_1"
+_test_a_function "_alg_2"
 
 echo "With set -euo pipefail"
 set -euo pipefail
 _test_a_function "_alg_1"
+_test_a_function "_alg_2"
 
 #
 #
