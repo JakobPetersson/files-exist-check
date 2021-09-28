@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eou >/dev/null
+set -eu
 
 #
 #
