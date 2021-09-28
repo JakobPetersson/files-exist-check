@@ -8,5 +8,9 @@
 Test it:
 
 ```shell
+# Test once
 ./test.sh
+
+#  Test until it fails
+while ./test.sh; do true; done
 ```
