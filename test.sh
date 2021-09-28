@@ -29,7 +29,9 @@ _test_once() {
     ANY_TESTING_ERROR=1
   fi
 
-  printf "Test: %10s | Dir: %10s | Pattern: %40s | Expected: %10s | Actual: %10s | %s\n" "${_NAME_OF_COMMAND}" "${_TEST_DIR}" "${_PATTERN}" "${_EXPECTED_STATUS}" "${_ACTUAL_STATUS}" "${_RESULT}"
+  if ! [ "${SILENT:-}" = "Y" ] || [ "${_RESULT}" = "FAIL" ]; then
+    printf "Test: %10s | Dir: %10s | Pattern: %40s | Expected: %10s | Actual: %10s | %s\n" "${_NAME_OF_COMMAND}" "${_TEST_DIR}" "${_PATTERN}" "${_EXPECTED_STATUS}" "${_ACTUAL_STATUS}" "${_RESULT}"
+  fi
 }
 
 _test_a_function() {
