@@ -26,6 +26,7 @@ _test_once() {
     _RESULT="OK"
   else
     _RESULT="FAIL"
+    ANY_TESTING_ERROR=1
   fi
 
   printf "Test: %10s | Dir: %10s | Pattern: %40s | Expected: %10s | Actual: %10s | %s\n" "${_NAME_OF_COMMAND}" "${_TEST_DIR}" "${_PATTERN}" "${_EXPECTED_STATUS}" "${_ACTUAL_STATUS}" "${_RESULT}"
@@ -68,4 +69,19 @@ _alg_1() {
 # Test functions
 #
 
+echo "With set -eu"
+set -eu
 _test_a_function "_alg_1"
+
+echo "With set -euo pipefail"
+set -euo pipefail
+_test_a_function "_alg_1"
+
+#
+#
+#
+
+if [ -n "${ANY_TESTING_ERROR:-}" ]; then
+  echo "A testing  error was detected"
+  exit 1
+fi
