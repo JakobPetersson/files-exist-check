@@ -12,24 +12,23 @@ _test_once() {
   local _PATTERN="${3}"
   local _EXPECTED_STATUS="${4}"
 
-  printf "%10s %10s %40s %10s" "${_NAME_OF_COMMAND}" "${_TEST_DIR}" "${_PATTERN}" "${_EXPECTED_STATUS}"
-
   local _CMD="${_NAME_OF_COMMAND} ${_TEST_DIR} ${_PATTERN}"
 
-  local _RESULT
+  local _ACTUAL_STATUS
   if eval "${_CMD}"; then
-    _RESULT=$?
+    _ACTUAL_STATUS=$?
   else
-    _RESULT=$?
+    _ACTUAL_STATUS=$?
   fi
 
-  printf "%10s" "${_RESULT}"
-
-  if [ "${_RESULT}" = "${_EXPECTED_STATUS}" ]; then
-    printf " OK\n"
+  local _RESULT
+  if [ "${_ACTUAL_STATUS}" = "${_EXPECTED_STATUS}" ]; then
+    _RESULT="OK"
   else
-    printf " FAIL\n"
+    _RESULT="FAIL"
   fi
+
+  printf "Test: %10s | Dir: %10s | Pattern: %40s | Expected: %10s | Actual: %10s | %s\n" "${_NAME_OF_COMMAND}" "${_TEST_DIR}" "${_PATTERN}" "${_EXPECTED_STATUS}" "${_ACTUAL_STATUS}" "${_RESULT}"
 }
 
 _test_a_function() {
