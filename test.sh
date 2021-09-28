@@ -49,6 +49,9 @@ _test_a_function() {
 
   _test_once "${_NAME_OF_COMMAND}" "TEST_D" "${_MATCH_PATTERN}" 0
   _test_once "${_NAME_OF_COMMAND}" "TEST_D" "${_NO_MATCH_PATTERN}" 1
+
+  _test_once "${_NAME_OF_COMMAND}" "TEST_E" "${_MATCH_PATTERN}" 0
+  _test_once "${_NAME_OF_COMMAND}" "TEST_E" "${_NO_MATCH_PATTERN}" 1
 }
 
 
